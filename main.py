@@ -35,7 +35,7 @@ def main_loop(games):
   ticks = 0
 
   while keep_running:
-    timer.tick(8)
+    timer.tick(fps)
 
     for e in pygame.event.get():
       if e.type is pygame.KEYDOWN and e.key == pygame.K_ESCAPE:

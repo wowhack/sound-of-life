@@ -31,4 +31,5 @@ cell_size = game_screen_width / game_size[0]
 black = (0, 0, 0)
 white = (255, 255, 255)
 
-fps = 1
+fps = 8
+beat_duration = 0.5
