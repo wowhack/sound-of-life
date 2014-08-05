@@ -12,6 +12,7 @@ class Sound:
     self.trigenv = TrigEnv(input = self.trig, table = self.env, dur = 0.250)
 
     self.osc = Osc(table = self.wav, freq = 440, mul = self.trigenv).out()
+    self.osc2 = Osc(table = self.wav, freq = 440, mul = self.trigenv).out(1)
 
     self.s.start()
 
