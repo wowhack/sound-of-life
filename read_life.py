@@ -1,15 +1,15 @@
-def read(file, x, y):
-    ls = []
-    with open(file) as f:
-        # Ignore all comments
-        # Remove line endings
-        ls = map(lambda l: l.strip(), filter(lambda l: l[0] != '#D', f.readlines()))
-    
-    life = [[0] * x] * y
+def read(fp):
+  ls = []
+  alive = set()
+  with open(fp) as f:
+    # Ignore all comments
+    # Remove line endings
+    ls = map(lambda l: l.strip(), filter(lambda l: l[0] != '#', f.readlines()))
 
-    for yi, l in enumerate(ls):
-        for xi, c in enumerate(l):
-            if c == '*':
-                life[yi][xi]=1
 
-    return life
+  for yi, l in enumerate(ls):
+    for xi, c in enumerate(l):
+      if c == '*':
+        alive.add((xi, xy))
+
+  return alive

@@ -1,5 +1,5 @@
 # in pixels
-cell_size = 16
+cell_size = 40
 
 # cells
 game_size = game_width, game_height = 16, 9 

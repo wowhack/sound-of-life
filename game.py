@@ -4,8 +4,8 @@ import sys, os, pygame, random
 from pygame.locals import *
 
 from cell import Cell
-
 from consts import *
+import read_life
 
 screen = pygame.display.set_mode(screen_size)
 timer = pygame.time.Clock()
@@ -18,16 +18,6 @@ def neighbours(cell, cells):
   iter_start_y = cell.y - 1
   iter_end_x = (cell.x + 1) % game_width
   iter_end_y = (cell.y + 1) % game_height
- 
-  # corner cases
- # if cell.x == 0:
- #   iter_start_x = cell.x
- # if cell.y == 0:
- #   iter_start_y = cell.y
- # if cell.x == game_width-1:
- #   iter_end_x = cell.x
- # if cell.y == game_height-1:
- #   iter_end_y = cell.y
   
   neighbours = []
   for xi in range(iter_start_x, iter_end_x+1):
@@ -41,13 +31,18 @@ def neighbours(cell, cells):
 def alive_neighbours(cell, cells):
   return filter(lambda c: c.is_alive(), neighbours(cell, cells))
 
-
-def init_randomized_cells():
+def init_from_file(f):
+  alive = read_life.read(f)
   for y in range(game_height):
-
     row = []
     cells.append(row)
+    for x in range(game_width):
+      row.append(Cell(x, y, (x, y) in alive))
 
+def init_randomized():
+  for y in range(game_height):
+    row = []
+    cells.append(row)
     for x in range(game_width):
       row.append(Cell(x, y, random.choice([True, False])))
 
@@ -78,7 +73,7 @@ def main_loop():
 
 def main(): 
   pygame.init()
-  init_randomized_cells()
+  init_randomized()
   main_loop()
 
 if __name__ == '__main__':
