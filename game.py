@@ -81,52 +81,5 @@ def main():
   init_randomized_cells()
   main_loop()
 
-# test method
-# used for testing
-def test():
-  
-  for y in range(game_height):
-    cells.append(test_row(y))
-
-  print "original"
-  for y in range(game_width):
-    for x in range(game_height):
-      print cells[y][x].is_alive()
-
-  for x in range(game_width):
-    for y in range(game_height):
-      cell = cells[y][x]
-      cell.calculate_next()
-  for x in range(game_width):
-    for y in range(game_height):
-      cell = cells[y][x]
-      cell.new_generation()
-  
-  expected_result = [[False, False, False],
-                     [True, True, True],
-                     [False, False, False]]
-  
-  print "result"
-  for y in range(game_width):
-    for x in range(game_height):
-      print cells[y][x].is_alive()
-
-  print "expected"
-  for y in range(game_width):
-    for x in range(game_height):
-      print expected_result[y][x]
-
-  print "result == expected"
-  for y in range(game_width):
-    for x in range(game_height):
-      print cells[y][x].is_alive() == expected_result[y][x]
-
-def test_row(y):
-  row = []
-  row.append(Cell(0, y, False))
-  row.append(Cell(1, y, True))
-  row.append(Cell(2, y, False))
-  return row
-
 if __name__ == '__main__':
   main()
