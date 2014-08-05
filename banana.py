@@ -3,7 +3,7 @@ from consts import *
 
 class Banana():
   def __init__(self):
-    self.images = [pygame.image.load("banana/bananas-%s.png" % x) for x in range(0, 8)]
+    self.images = [pygame.image.load("banana/bananas-%s.bmp" % x) for x in range(0, 8)]
     self.surface = pygame.Surface(screen_size)
 
   def draw(self, tick):
