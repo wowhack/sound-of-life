@@ -1,5 +1,8 @@
 import pygame
 
+MELODY = 0
+CHORDS = 1 
+
 # some constants
 MIN_COLOR = 0
 MAX_COLOR = 255
