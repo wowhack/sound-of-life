@@ -1,13 +1,13 @@
 from pyo import *
 
 class Sound:
-  def __init__(self, freqs):
+  def __init__(self, freqs, vol):
     self.env = CosTable([(0,0),(50,1),(500,.25),(8191,0)])
     self.wav = SawTable(12)
 
     self.freqs = []
     for f in freqs:
-      self.freqs.append(Freq(f, self.env, self.wav))
+      self.freqs.append(Freq(f, self.env, self.wav, vol))
 
   def play(self, freq):
     """Play a note"""
@@ -15,13 +15,13 @@ class Sound:
 
 
 class Freq:
-  def __init__(self, freq, env, wav):
+  def __init__(self, freq, env, wav, vol):
     self.trig = Trig()
 
     self.trigenv = TrigEnv(input = self.trig, table = env, dur = 0.5)
 
-    self.osc = Osc(table = wav, freq = freq, mul = self.trigenv).out()
-    self.osc2 = Osc(table = wav, freq = freq, mul = self.trigenv).out(1)
+    self.osc = Osc(table = wav, freq = freq, mul = self.trigenv * vol).out()
+    self.osc2 = Osc(table = wav, freq = freq, mul = self.trigenv * vol).out(1)
 
   def play(self):
     self.trig.play()

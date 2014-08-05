@@ -12,8 +12,14 @@ def main():
   server = Server().boot().start()
 
   games = []
-  for i in range(1):
-    games.append(Game())
+  scales = [
+      ([0, 311.13, 349.23, 392.0, 415.30, 466.16, 523.25, 587.33], 0.2)
+      , ([0, 77.78, 87.31, 98.00, 103.83, 116.54, 130.81], 1)
+      ]
+
+  for scale,vol in scales:
+    games.append(Game(scale, vol))
+
   main_loop(games)
 
 
@@ -36,6 +42,7 @@ def main_loop(games):
       screen.fill(black)
 
       for i, game in enumerate(games):
+        game.new_generation()
         game.iterate()
         screen.blit(game.surface, ((i%2)*game_screen_width,([0,0,1,1][i])*game_screen_height))
 

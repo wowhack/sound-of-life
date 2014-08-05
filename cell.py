@@ -17,6 +17,7 @@ class Cell:
 
   def set_alive(self, alive=True):
     self.alive = alive
+    self.alive_next = alive
     self.age = 0
 
   def __reset_color(self):
@@ -24,33 +25,21 @@ class Cell:
     self.red = MIN_COLOR
 
   # Returns the age if the cell dies, else -1
-  def calculate_next(self, no_of_alive_neighbours):
-    # these are the game of life rules
+  def calculate_next(self, ns):
     if self.alive:
-      if no_of_alive_neighbours < 2:
-        # 'death by under-population'
-        self.alive_next = False
-        return self.age
-      elif no_of_alive_neighbours == 2 or no_of_alive_neighbours == 3: 
-        # 'enough neighbours to live on'
+      if ns == 2 or ns == 3:
         self.alive_next = True
-        self.__new_age()
-      elif no_of_alive_neighbours > 3:
-        # 'death by over-population'
+        self.age += 1
+      else:
         self.alive_next = False
-        return self.age
     else:
-      # if not alive
-      if no_of_alive_neighbours == 3:
-        # 'regenerate by reproduction'
+      if ns == 3:
         self.alive_next = True
         self.age = 0
-        self.__new_age()
       else:
-        # 'stay dead :('
         self.alive_next = False
 
-    return -1
+    return self.age
 
   def new_generation(self):
     self.alive = self.alive_next

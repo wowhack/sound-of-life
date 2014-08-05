@@ -8,10 +8,10 @@ from consts import *
 from sound import Sound
 
 class Game:
-  def __init__(self):
+  def __init__(self, scale, vol):
     self.__init_randomized_cells()
     self.surface = pygame.Surface(screen_size)
-    self.sound = Sound([0, 311.13, 349.23, 392.0, 415.30, 466.16, 523.25, 587.33])
+    self.sound = Sound(scale, vol)
 
   def __init_randomized_cells(self):
     self.cells = []
@@ -40,6 +40,7 @@ class Game:
 
         cell.calculate_next(len(self.__alive_neighbours(cell)))
 
+  def new_generation(self):
     for x in range(game_width):
       for y in range(game_height):
         cell = self.cells[y][x]
@@ -48,15 +49,15 @@ class Game:
   def __neighbours(self, cell):
     iter_start_x = cell.x - 1
     iter_start_y = cell.y - 1
-    iter_end_x = (cell.x + 1) % game_width
-    iter_end_y = (cell.y + 1) % game_height
+    iter_end_x = cell.x + 1
+    iter_end_y = cell.y + 1
    
     neighbours = []
     for xi in range(iter_start_x, iter_end_x+1):
       for yi in range(iter_start_y, iter_end_y+1):
         if cell.x == xi and cell.y == yi:
           continue
-        neighbours.append(self.cells[yi][xi])
+        neighbours.append(self.cells[yi % game_height][xi % game_width])
 
     return neighbours
 
