@@ -4,11 +4,7 @@ import sys, os, pygame, random
 from pygame.locals import *
 
 from cell import Cell
-
 from consts import *
-
-screen = pygame.display.set_mode(screen_size)
-timer = pygame.time.Clock()
 
 class Game:
   def __init__(self):
@@ -59,29 +55,3 @@ class Game:
 
   def __alive_neighbours(self, cell):
     return filter(lambda c: c.is_alive(), self.__neighbours(cell))
-
-
-def main_loop(games):
-  while True:
-    timer.tick(fps)
-
-    screen.fill(black)
-    
-    for i in range(4):
-      games[i].iterate()
-      screen.blit(games[i].surface, ((i%2)*game_screen_width,([0,0,1,1][i])*game_screen_height))
-
-    pygame.draw.line(screen, white, (0, game_screen_height), (2*game_screen_width, game_screen_height))
-    pygame.draw.line(screen, white, (game_screen_width, 0), (game_screen_width, 2*game_screen_height))
-
-    pygame.display.flip()
-
-def main(): 
-  pygame.init()
-  games = []
-  for i in range(4):
-    games.append(Game())
-  main_loop(games)
-
-if __name__ == '__main__':
-  main()
