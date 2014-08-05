@@ -6,7 +6,7 @@ import pygame, random
 
 screen = pygame.display.set_mode(screen_size, pygame.FULLSCREEN)
 timer = pygame.time.Clock()
-
+ 
 def main(): 
   pygame.init()
   server = Server().boot().start()
