@@ -59,7 +59,7 @@ def main_loop(games):
 
     ticks += 1
 
-    if ticks == 16:
+    if ticks == fps*2:
       ticks = 0
 
       for game in games:
