@@ -13,34 +13,39 @@ class Cell:
     self.alive = alive
     self.age = 0
 
+  # Returns the age if the cell dies, else -1
   def calculate_next(self, no_of_alive_neighbours):
     # these are the game of life rules
     if self.alive:
       if no_of_alive_neighbours < 2:
         # 'death by under-population'
         self.alive_next = False
+        return self.age
       elif no_of_alive_neighbours == 2 or no_of_alive_neighbours == 3: 
         # 'enough neighbours to live on'
         self.alive_next = True
-        self.__age()
+        self.__new_age()
       elif no_of_alive_neighbours > 3:
         # 'death by over-population'
         self.alive_next = False
+        return self.age
     else:
       # if not alive
       if no_of_alive_neighbours == 3:
         # 'regenerate by reproduction'
         self.alive_next = True
-        age = 0
-        self.__age()
+        self.age = 0
+        self.__new_age()
       else:
         # 'stay dead :('
         self.alive_next = False
 
+    return -1
+
   def new_generation(self):
     self.alive = self.alive_next
 
-  def __age(self):
+  def __new_age(self):
     self.age += 1
 
   def is_alive(self):

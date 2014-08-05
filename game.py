@@ -60,7 +60,10 @@ def main_loop():
         if cell.alive:
           pygame.draw.rect(screen, cell.color(), cell.rect)
 
-        cell.calculate_next(len(alive_neighbours(cell, cells)))
+        cell_age = cell.calculate_next(len(alive_neighbours(cell, cells)))
+        if cell_age != -1:
+          # play a note
+          print cell_age
 
     for x in range(game_width):
       for y in range(game_height):
