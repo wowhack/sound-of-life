@@ -8,6 +8,8 @@ from cell import Cell
 from consts import *
 
 screen = pygame.display.set_mode(screen_size)
+timer = pygame.time.Clock()
+fps = 5
 
 cells = []
 
@@ -51,6 +53,8 @@ def init_randomized_cells():
 
 def main_loop():
   while True:
+    timer.tick(fps)
+
     screen.fill(black)
 
     for x in range(game_width):
