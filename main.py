@@ -1,12 +1,14 @@
 from game import Game
 from consts import *
+from banana import Banana
 
 from pyo import Server
 import pygame, random
 
 screen = pygame.display.set_mode(screen_size, pygame.FULLSCREEN)
 timer = pygame.time.Clock()
- 
+banana = Banana()
+
 def main(): 
   pygame.init()
   server = Server().boot().start()
@@ -51,8 +53,12 @@ def main_loop(games):
       game.change_column_color(ticks)
       game.draw()
       screen.blit(game.surface, ((i%2)*game_screen_width,(i/2)*game_screen_height))
-      pygame.draw.line(screen, white, (0, game_screen_height), (2*game_screen_width, game_screen_height))
-      pygame.draw.line(screen, white, (game_screen_width, 0), (game_screen_width, 2*game_screen_height))
+
+    banana.draw(ticks)
+    screen.blit(banana.surface, (game_screen_width, game_screen_height))
+    pygame.draw.line(screen, white, (0, game_screen_height), (2*game_screen_width, game_screen_height))
+    pygame.draw.line(screen, white, (game_screen_width, 0), (game_screen_width, 2*game_screen_height))
+
 
     pygame.display.flip()
 
