@@ -32,13 +32,16 @@ class Cell:
         # 'regenerate by reproduction'
         self.alive_next = True
         age = 0
-        self.age()
+        self.__age()
       else:
         # 'stay dead :('
         self.alive_next = False
 
   def new_generation(self):
     self.alive = self.alive_next
+
+  def __age(self):
+    self.age += 1
 
   def is_alive(self):
     return self.alive
