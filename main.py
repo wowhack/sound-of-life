@@ -4,7 +4,7 @@ from consts import *
 from pyo import Server
 import pygame
 
-screen = pygame.display.set_mode(screen_size)
+screen = pygame.display.set_mode(screen_size, pygame.FULLSCREEN)
 timer = pygame.time.Clock()
 
 def main(): 
@@ -18,8 +18,13 @@ def main():
 
 
 def main_loop(games):
-  while True:
+  keep_running = True
+  while keep_running:
     timer.tick(fps)
+
+    for e in pygame.event.get():
+      if e.type is pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
+        keep_running = False
 
     screen.fill(black)
     
