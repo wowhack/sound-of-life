@@ -23,10 +23,10 @@ class Game:
       for x in range(game_width):
         row.append(Cell(x, y, random.choice([True, False])))
 
-  def __play(self, sounds):
-    for notes in sounds:
-      for note in notes:
-        self.sound.play(note)
+      self.cellsT = [list(i) for i in zip(*self.cells)]
+
+  def playSound(self, ticks):
+    self.sound.play(len(filter(lambda c: c.alive, self.cellsT[ticks-1])))
 
   def iterate(self):
     self.surface.fill(black)
@@ -37,7 +37,6 @@ class Game:
 
         if cell.alive:
           pygame.draw.rect(self.surface, cell.color(), cell.rect)
-          self.sound.play(y)
 
         cell.calculate_next(len(self.__alive_neighbours(cell)))
 
