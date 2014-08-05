@@ -37,7 +37,7 @@ class Game:
         cell = self.cells[y][x]
 
         if cell.alive:
-          pygame.draw.rect(self.surface, cell.color(), cell.rect)
+          pygame.draw.rect(self.surface, cell.color, cell.rect)
 
         cell.calculate_next(len(self.__alive_neighbours(cell)))
 
