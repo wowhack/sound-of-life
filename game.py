@@ -38,6 +38,9 @@ class Game:
   def change_column_color(self, ticks):
     for cell in self.cellsT[ticks]:
       cell.switch_color()
+    if self.type == CHORDS:
+      for cell in self.cellsT[ticks-1]:
+        cell.darken_color()
 
   def draw(self):
     self.surface.fill(black)
