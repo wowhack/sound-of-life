@@ -14,3 +14,5 @@ screen_size = width, height = 2 * game_screen_width, 2 * game_screen_height
 # colors
 black = (0, 0, 0)
 white = (255, 255, 255)
+
+fps = 5
