@@ -3,7 +3,7 @@ from consts import *
 
 import pygame
 
-screen = pygame.display.set_mode(screen_size)#, pygame.FULLSCREEN)
+screen = pygame.display.set_mode(screen_size, pygame.FULLSCREEN)
 timer = pygame.time.Clock()
 
 def main(): 
