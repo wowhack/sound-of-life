@@ -16,18 +16,18 @@ cells = []
 def neighbours(cell, cells):
   iter_start_x = cell.x - 1
   iter_start_y = cell.y - 1
-  iter_end_x = cell.x + 1
-  iter_end_y = cell.y + 1
+  iter_end_x = (cell.x + 1) % game_width
+  iter_end_y = (cell.y + 1) % game_height
  
   # corner cases
-  if cell.x == 0:
-    iter_start_x = cell.x
-  if cell.y == 0:
-    iter_start_y = cell.y
-  if cell.x == game_width-1:
-    iter_end_x = cell.x
-  if cell.y == game_height-1:
-    iter_end_y = cell.y
+ # if cell.x == 0:
+ #   iter_start_x = cell.x
+ # if cell.y == 0:
+ #   iter_start_y = cell.y
+ # if cell.x == game_width-1:
+ #   iter_end_x = cell.x
+ # if cell.y == game_height-1:
+ #   iter_end_y = cell.y
   
   neighbours = []
   for xi in range(iter_start_x, iter_end_x+1):
