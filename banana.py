@@ -11,5 +11,6 @@ class Banana():
 
     image = self.images[tick % len(self.images)]
     x = image.get_width()
+    y = image.get_height()
     
-    self.surface.blit(image, (0, 0))
+    self.surface.blit(image, (screen_width / 4 - x/2, screen_height / 4 - y/2))
