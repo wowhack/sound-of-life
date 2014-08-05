@@ -38,8 +38,7 @@ class Game:
   def change_column_color(self, ticks):
     for cell in self.cellsT[ticks]:
       cell.switch_color()
-    if self.type == CHORDS:
-      for cell in self.cellsT[ticks-1]:
+    if self.type == CHORDS and ticks != 0 and ticks != 8:
         cell.darken_color()
 
   def draw(self):

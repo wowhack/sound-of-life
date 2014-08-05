@@ -23,7 +23,7 @@ class Cell:
       self.color = self.default_color
 
   def darken_color(self):
-    self.color = tuple(map(lambda x: max(0, x - 51), self.color))
+    self.color = tuple(map(lambda x: max(0, x - 100), self.color))
   
   # Returns the age if the cell dies, else -1
   def calculate_next(self, ns):
