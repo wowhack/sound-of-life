@@ -5,11 +5,13 @@ from pygame.locals import *
 
 from cell import Cell
 from consts import *
+from sound import Sound
 
 class Game:
   def __init__(self):
     self.__init_randomized_cells()
     self.surface = pygame.Surface(screen_size)
+    self.sound = Sound([311.13, 349.23, 392.0, 415.30, 466.16, 523.25, 587.33])
 
   def __init_randomized_cells(self):
     self.cells = []
@@ -21,6 +23,11 @@ class Game:
       for x in range(game_width):
         row.append(Cell(x, y, random.choice([True, False])))
 
+  def __play(self, sounds):
+    for notes in sounds:
+      for note in notes:
+        self.sound.play(note)
+
   def iterate(self):
     self.surface.fill(black)
 
@@ -30,6 +37,7 @@ class Game:
 
         if cell.alive:
           pygame.draw.rect(self.surface, cell.color(), cell.rect)
+          self.sound.play(y)
 
         cell.calculate_next(len(self.__alive_neighbours(cell)))
 

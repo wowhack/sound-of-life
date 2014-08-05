@@ -1,6 +1,7 @@
 from game import Game
 from consts import *
 
+from pyo import Server
 import pygame
 
 screen = pygame.display.set_mode(screen_size)
@@ -8,6 +9,8 @@ timer = pygame.time.Clock()
 
 def main(): 
   pygame.init()
+  server = Server().boot().start()
+
   games = []
   for i in range(4):
     games.append(Game())

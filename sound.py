@@ -25,8 +25,3 @@ class Freq:
 
   def play(self):
     self.trig.play()
-
-s = Server().boot()
-s.start()
-
-ss = Sound([311.13, 349.23, 392.0, 415.30, 466.16, 523.25, 587.33])
