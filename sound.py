@@ -1,4 +1,5 @@
 from pyo import *
+from consts import *
 
 class Sound:
   def __init__(self, freqs, vol):
@@ -18,7 +19,7 @@ class Freq:
   def __init__(self, freq, env, wav, vol):
     self.trig = Trig()
 
-    self.trigenv = TrigEnv(input = self.trig, table = env, dur = 0.5)
+    self.trigenv = TrigEnv(input = self.trig, table = env, dur = beat_duration)
 
     self.osc = Osc(table = wav, freq = freq, mul = self.trigenv * vol).out()
     self.osc2 = Osc(table = wav, freq = freq, mul = self.trigenv * vol).out(1)
