@@ -1,5 +1,10 @@
 import pygame
 
+# some constants
+MIN_COLOR = 0
+MAX_COLOR = 255
+COLOR_STEP = 85
+
 # in pixels
 #cell_size = 40
 

@@ -2,7 +2,7 @@ from game import Game
 from consts import *
 
 from pyo import Server
-import pygame
+import pygame, random
 
 screen = pygame.display.set_mode(screen_size, pygame.FULLSCREEN)
 timer = pygame.time.Clock()
@@ -18,10 +18,17 @@ def main():
       ]
 
   for scale,vol in scales:
-    games.append(Game(scale, vol))
+    games.append(Game(scale, vol, randomize_colors()))
 
   main_loop(games)
 
+def randomize_colors():
+  random_color = (randomize_color_number(), randomize_color_number(), randomize_color_number())
+  inverse_color = tuple(map(lambda x: MAX_COLOR - x, random_color))
+  return random_color, inverse_color
+
+def randomize_color_number():
+  return random.randint(MIN_COLOR, MAX_COLOR)
 
 def main_loop(games):
   keep_running = True

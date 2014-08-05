@@ -8,7 +8,8 @@ from consts import *
 from sound import Sound
 
 class Game:
-  def __init__(self, scale, vol):
+  def __init__(self, scale, vol, colors):
+    self.colors = colors
     self.__init_randomized_cells()
     self.surface = pygame.Surface(screen_size)
     self.sound = Sound(scale, vol)
@@ -21,7 +22,7 @@ class Game:
       self.cells.append(row)
 
       for x in range(game_width):
-        row.append(Cell(x, y, random.choice([True, False])))
+        row.append(Cell(x, y, self.colors, random.choice([True, False])))
 
       self.cellsT = [list(i) for i in zip(*self.cells)]
 
