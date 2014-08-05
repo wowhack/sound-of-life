@@ -1,6 +1,6 @@
 #!/usr/bin/env
 
-import sys, os, pygame, random
+import pygame, random
 from pygame.locals import *
 
 from cell import Cell

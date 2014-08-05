@@ -1,6 +1,7 @@
 from game import Game
 from consts import *
 from banana import Banana
+from splash import Splash
 
 from pyo import Server
 import pygame, random
@@ -38,11 +39,29 @@ def randomize_color_number():
 
 def main_loop(games):
   keep_running = True
+  show_splash = True
   ticks = 0
+  splash = Splash(randomize_colors())
+
 
   while keep_running:
     timer.tick(fps)
     screen.fill(black)
+
+    # Show splash screen
+    if show_splash:
+      splash.draw()
+      screen.blit(splash.surface, (0, 0))
+      splash.new_generation()
+      splash.iterate()
+      pygame.display.flip()
+
+      for e in pygame.event.get():
+        if e.type is pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
+          show_splash = False
+
+      ticks = 0
+      continue
 
     for e in pygame.event.get():
       if e.type is pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
