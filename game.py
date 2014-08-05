@@ -27,18 +27,24 @@ class Game:
       self.cellsT = [list(i) for i in zip(*self.cells)]
 
   def playSound(self, ticks):
-    self.sound.play(len(filter(lambda c: c.alive, self.cellsT[ticks-1])))
+    self.sound.play(len(filter(lambda c: c.alive, self.cellsT[ticks])))
 
-  def iterate(self):
+  def change_column_color(self, ticks):
+    for cell in self.cellsT[ticks]:
+      cell.switch_color()
+
+  def draw(self):
     self.surface.fill(black)
-
     for x in range(game_width):
       for y in range(game_height):
         cell = self.cells[y][x]
-
         if cell.alive:
           pygame.draw.rect(self.surface, cell.color, cell.rect)
 
+  def iterate(self):
+    for x in range(game_width):
+      for y in range(game_height):
+        cell = self.cells[y][x]
         cell.calculate_next(len(self.__alive_neighbours(cell)))
 
   def new_generation(self):

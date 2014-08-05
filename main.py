@@ -36,29 +36,30 @@ def main_loop(games):
 
   while keep_running:
     timer.tick(fps)
+    screen.fill(black)
 
     for e in pygame.event.get():
       if e.type is pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
         keep_running = False
 
-    for game in games:
+    for i, game in enumerate(games):
       game.playSound(ticks)
-
-    if ticks % 16 == 0:
-      ticks = 0
-      screen.fill(black)
-
-      for i, game in enumerate(games):
-        game.new_generation()
-        game.iterate()
-        screen.blit(game.surface, ((i%2)*game_screen_width,([0,0,1,1][i])*game_screen_height))
-
+      game.change_column_color(ticks)
+      game.draw()
+      screen.blit(game.surface, ((i%2)*game_screen_width,(i/2)*game_screen_height))
       pygame.draw.line(screen, white, (0, game_screen_height), (2*game_screen_width, game_screen_height))
       pygame.draw.line(screen, white, (game_screen_width, 0), (game_screen_width, 2*game_screen_height))
 
-      pygame.display.flip()
+    pygame.display.flip()
 
     ticks += 1
+
+    if ticks == 16:
+      ticks = 0
+
+      for game in games:
+        game.new_generation()
+        game.iterate()
 
 
 if __name__ == '__main__':
