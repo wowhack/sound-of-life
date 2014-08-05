@@ -5,7 +5,7 @@ from consts import *
 # some constants
 MIN_COLOR = 0
 MAX_COLOR = 255
-COLOR_STEP = 17
+COLOR_STEP = 85
 
 class Cell:
   def __init__(self, x, y, alive=False):

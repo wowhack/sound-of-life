@@ -20,9 +20,9 @@ def main():
 def main_loop(games):
   keep_running = True
   ticks = 0
+
   while keep_running:
     timer.tick(8)
-    ticks += 1
 
     for e in pygame.event.get():
       if e.type is pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
@@ -43,6 +43,8 @@ def main_loop(games):
       pygame.draw.line(screen, white, (game_screen_width, 0), (game_screen_width, 2*game_screen_height))
 
       pygame.display.flip()
+
+    ticks += 1
 
 
 if __name__ == '__main__':

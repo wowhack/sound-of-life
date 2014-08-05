@@ -11,7 +11,7 @@ class Game:
   def __init__(self):
     self.__init_randomized_cells()
     self.surface = pygame.Surface(screen_size)
-    self.sound = Sound([311.13, 349.23, 392.0, 415.30, 466.16, 523.25, 587.33])
+    self.sound = Sound([0, 311.13, 349.23, 392.0, 415.30, 466.16, 523.25, 587.33])
 
   def __init_randomized_cells(self):
     self.cells = []
