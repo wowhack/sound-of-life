@@ -33,3 +33,6 @@ white = (255, 255, 255)
 
 fps = 8
 beat_duration = 0.5
+
+# milliseceonds
+time_til_logo = 5000
