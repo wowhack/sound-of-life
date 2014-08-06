@@ -3,12 +3,12 @@ from consts import *
 
 class Sound:
   def __init__(self, freqs, vol):
-    self.env = CosTable([(0,0),(50,1),(500,.25),(8191,0)])
+    self.shape = CosTable([(0,0),(50,1),(500,.25),(8191,0)])
     self.wav = SawTable(12)
 
     self.freqs = []
     for f in freqs:
-      self.freqs.append(Freq(f, self.env, self.wav, vol))
+      self.freqs.append(Freq(f, self.shape, self.wav, vol))
 
   def play(self, freq):
     """Play a note"""
