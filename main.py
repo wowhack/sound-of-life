@@ -74,7 +74,7 @@ def main_loop(games):
     timer.tick(fps)
     screen.fill(black)
 
-    if ticks == fps*2:
+    if ticks == 16:
       ticks = 0
       for game in games:
         game.new_generation()
