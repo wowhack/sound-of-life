@@ -64,16 +64,18 @@ def main_loop(games):
     pygame.display.flip()
 
     for e in pygame.event.get():
-      if e.type is pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
+      if e.type is pygame.KEYDOWN and e.key == pygame.K_SPACE:
         show_splash = False
-
+      if e.type is pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
+        keep_running = False
+        show_splash = False
 
   while keep_running:
     timer.tick(fps)
     screen.fill(black)
 
     for e in pygame.event.get():
-      if e.type is pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
+      if e.type is pygame.KEYDOWN and (e.key == pygame.K_ESCAPE or e.key == pygame.K_SPACE):
         keep_running = False
 
     for i, game in enumerate(games):
