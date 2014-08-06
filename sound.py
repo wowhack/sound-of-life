@@ -14,8 +14,10 @@ class Sound:
 
   def play(self, freq):
     """Play a note"""
-    self.curr = Sine(freq = self.freqs[freq % len(self.freqs)], mul = self.vol).out(dur = beat_duration*0.7)
-    self.curr2 = Sine(freq = self.freqs[freq % len(self.freqs)], mul = self.vol).out(1, dur = beat_duration*0.7)
+    self.a = Sine(freq = self.freqs[freq % len(self.freqs)], mul = self.vol).out(dur = beat_duration*0.7)
+    self.b = Sine(freq = 2*self.freqs[freq % len(self.freqs)], mul = self.vol).out(dur = beat_duration*0.7)
+    self.c = Sine(freq = self.freqs[freq % len(self.freqs)], mul = self.vol).out(1, dur = beat_duration*0.7)
+    self.d = Sine(freq = 2*self.freqs[freq % len(self.freqs)], mul = self.vol).out(1, dur = beat_duration*0.7)
     #self.freqs[freq % len(self.freqs)].play()
 
 
