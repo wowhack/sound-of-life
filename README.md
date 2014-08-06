@@ -6,7 +6,7 @@ out West hackathon 2014 at Spotify Gothenburgs offices.
 
 ## Demo
 
-* Youtube demo
+* Youtube demo (coming soon?)
 
 ## Running
 
