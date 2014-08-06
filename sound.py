@@ -24,8 +24,7 @@ class Freq:
 
     
     self.osc = Osc(table = wav, freq = freq, mul = self.trigenv * vol).out()
-    
-    #self.osc2 = Osc(table = wav, freq = freq, mul = self.trigenv * vol).out(1)
+    self.osc2 = Osc(table = wav, freq = freq, mul = self.trigenv * vol).out(1)
 
   def play(self):
     self.trig.play()
