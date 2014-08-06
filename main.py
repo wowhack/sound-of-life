@@ -29,6 +29,7 @@ def main():
   scales = [
       ([0, 311.13, 349.23, 392.0, 415.30, 466.16, 523.25, 587.33], 0.2), 
       ([0, 77.78, 87.31, 98.00, 103.83, 116.54, 130.81], 1),
+      ([1244.51, 1396.91, 1567.98, 1661.22, 1864.66, 2093.00, 2349.32], 0.01),
       ]
 
   chord_scale, chord_vol = [0, 311.13, 349.23, 392.0, 415.30, 466.16, 523.25, 587.33], 0.1
@@ -36,7 +37,7 @@ def main():
   for scale,vol in scales:
     games.append(Game(scale, vol, randomize_colors(), play_sound))
   
-  games.append(ChordsGame(chord_scale, chord_vol, randomize_colors(), play_sound)) 
+  #games.append(ChordsGame(chord_scale, chord_vol, randomize_colors(), play_sound)) 
 
   main_loop(games)
 
