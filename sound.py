@@ -8,16 +8,19 @@ class Sound:
 
     self.vol = vol
     self.freqs = freqs
+    self.q = []
     #self.freqs = []
     #for f in freqs:
       #self.freqs.append(Freq(f, self.shape, self.wave, vol))
 
   def play(self, freq):
     """Play a note"""
-    self.a = Sine(freq = self.freqs[freq % len(self.freqs)], mul = self.vol).out(dur = beat_duration*0.7)
-    self.b = Sine(freq = 2*self.freqs[freq % len(self.freqs)], mul = self.vol).out(dur = beat_duration*0.7)
-    self.c = Sine(freq = self.freqs[freq % len(self.freqs)], mul = self.vol).out(1, dur = beat_duration*0.7)
-    self.d = Sine(freq = 2*self.freqs[freq % len(self.freqs)], mul = self.vol).out(1, dur = beat_duration*0.7)
+    self.q.extend([
+        Sine(freq = self.freqs[freq % len(self.freqs)], mul = self.vol).out(dur = beat_duration),
+        Sine(freq = 2*self.freqs[freq % len(self.freqs)], mul = self.vol).out(dur = beat_duration),
+        Sine(freq = self.freqs[freq % len(self.freqs)], mul = self.vol).out(1, dur = beat_duration),
+        Sine(freq = 2*self.freqs[freq % len(self.freqs)], mul = self.vol).out(1, dur = beat_duration)
+      ])
     #self.freqs[freq % len(self.freqs)].play()
 
 

@@ -74,6 +74,12 @@ def main_loop(games):
     timer.tick(fps)
     screen.fill(black)
 
+    if ticks == fps*2:
+      ticks = 0
+      for game in games:
+        game.new_generation()
+        game.iterate()
+
     for e in pygame.event.get():
       if e.type is pygame.KEYDOWN and (e.key == pygame.K_ESCAPE or e.key == pygame.K_SPACE):
         keep_running = False
@@ -93,13 +99,6 @@ def main_loop(games):
     pygame.display.flip()
 
     ticks += 1
-
-    if ticks == fps*2:
-      ticks = 0
-
-      for game in games:
-        game.new_generation()
-        game.iterate()
 
 
 if __name__ == '__main__':
