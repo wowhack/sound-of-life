@@ -55,6 +55,7 @@ def main_loop(games):
   splash = Splash()
 
   while show_splash:
+    timer.tick(fps)
     splash.draw()
     screen.blit(splash.surface, (0, 0))
     splash.new_generation()
