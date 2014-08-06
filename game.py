@@ -8,11 +8,13 @@ from consts import *
 from sound import Sound
 
 class Game:
-  def __init__(self, scale, vol, colors):
+  def __init__(self, scale, vol, colors, play_sound):
     self.colors = colors
+    self.play_sound = play_sound
     self.__init_randomized_cells()
     self.surface = pygame.Surface(screen_size)
-    self.sound = Sound(scale, vol)
+    if play_sound:
+      self.sound = Sound(scale, vol)
 
   def __init_randomized_cells(self):
     self.cells = []
@@ -27,10 +29,11 @@ class Game:
       self.cellsT = [list(i) for i in zip(*self.cells)]
 
   def playSound(self, ticks):
-    self.sound.play(len(filter(lambda c: c.alive, self.cellsT[ticks])))
-    for i, cell in enumerate(reversed(self.cellsT[ticks])):
-      if cell.is_alive():
-        self.sound.play(i)
+    if self.play_sound:
+      self.sound.play(len(filter(lambda c: c.alive, self.cellsT[ticks])))
+      for i, cell in enumerate(reversed(self.cellsT[ticks])):
+        if cell.is_alive():
+          self.sound.play(i)
 
   def change_column_color(self, ticks):
     for cell in self.cellsT[ticks]:

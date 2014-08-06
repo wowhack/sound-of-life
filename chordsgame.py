@@ -8,10 +8,11 @@ from cell import Cell
 from sound import Sound
 
 class ChordsGame(Game):
-  def playSound(self):
-    for i, cell in enumerate(reversed(self.cellsT[ticks])):
-      if cell.is_alive():
-        self.sound.play(i)
+  def playSound(self, ticks):
+    if self.play_sound:
+      for i, cell in enumerate(reversed(self.cellsT[ticks])):
+        if cell.is_alive():
+          self.sound.play(i)
 
   def change_column_color(self, ticks):
     for cell in self.cellsT[ticks]:

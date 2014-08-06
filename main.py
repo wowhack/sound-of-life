@@ -1,18 +1,29 @@
 from game import Game
+from chordsgame import ChordsGame
 from consts import *
 from banana import Banana
 from splash import Splash
 
 from pyo import Server
-import pygame, random
+import pygame, random, sys
 
-screen = pygame.display.set_mode(screen_size, pygame.FULLSCREEN)
+screen = pygame.display.set_mode(screen_size)#, pygame.FULLSCREEN)
 timer = pygame.time.Clock()
 banana = Banana()
 
 def main(): 
+
+  # this is so :fabian, who is pyo impaired, actually can run this shit
+  if len(sys.argv) > 1 and sys.argv[1] == "--nopyo":
+    play_sound = False
+    print "Playing without sound"
+  else:
+    play_sound = True
+    print "Playing with sound"
+
   pygame.init()
-  server = Server().boot().start()
+  if play_sound:
+    server = Server().boot().start()
 
   games = []
   scales = [
@@ -23,9 +34,9 @@ def main():
   chord_scale, chord_vol = [0, 311.13, 349.23, 392.0, 415.30, 466.16, 523.25, 587.33], 0.1
 
   for scale,vol in scales:
-    games.append(Game(scale, vol, randomize_colors()))
+    games.append(Game(scale, vol, randomize_colors(), play_sound))
   
-  games.append(Game(chord_scale, chord_vol, randomize_colors())) 
+  games.append(ChordsGame(chord_scale, chord_vol, randomize_colors(), play_sound)) 
 
   main_loop(games)
 
