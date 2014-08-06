@@ -1,12 +1,13 @@
 sound-of-life
 =============
 
-## Install pyo
+## Demo
 
-* Installation instructions <https://code.google.com/p/pyo/wiki/Installation>
-* Done?
+* Youtube demo <LOL>
 
-## Install pygame
+## Running
 
-* Download and install from <http://www.pygame.org/download.shtml>
-* Done!
+* Install PYO <https://code.google.com/p/pyo/wiki/Installation>
+* Install pygame <http://www.pygame.org/download.shtml>
+* `python main.py`
+* Profit!
