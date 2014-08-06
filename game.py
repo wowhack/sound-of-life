@@ -22,7 +22,7 @@ class Game:
       self.cells.append(row)
 
       for x in range(game_width):
-        row.append(Cell(x, y, self.colors, random.choice([True, False, False])))
+        row.append(Cell(x, y, self.colors, random.choice([True, False, False, False])))
 
       self.cellsT = [list(i) for i in zip(*self.cells)]
 
