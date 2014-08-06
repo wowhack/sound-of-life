@@ -2,16 +2,12 @@ from pygame.locals import Rect
 
 from consts import *
 
-DEFAULT = 0
-INVERSE = 1
-
 class Cell:
   def __init__(self, x, y, colors, alive=False):
     self.x = x
     self.y = y
     self.set_alive(alive)
     self.default_color, self.inverse_color = colors
-    self.current_color = DEFAULT
     self.color = self.default_color
     self.rect = Rect(x*cell_size, y*cell_size, cell_size, cell_size)
 
@@ -21,15 +17,10 @@ class Cell:
     self.age = 0
 
   def switch_color(self):
-    if self.current_color == DEFAULT:
-      self.current_color = INVERSE
+    if self.color == self.default_color:
       self.color = self.inverse_color
     else:
-      self.current_color = DEFAULT
       self.color = self.default_color
-
-  def darken_color(self):
-    self.color = tuple(map(lambda x: max(5, x - 100), self.color))
 
   # Returns the age if the cell dies, else -1
   def calculate_next(self, ns):
