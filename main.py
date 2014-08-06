@@ -41,27 +41,23 @@ def main_loop(games):
   keep_running = True
   show_splash = True
   ticks = 0
-  splash = Splash(randomize_colors())
+  splash = Splash()
+
+  while show_splash:
+    splash.draw()
+    screen.blit(splash.surface, (0, 0))
+    splash.new_generation()
+    splash.iterate()
+    pygame.display.flip()
+
+    for e in pygame.event.get():
+      if e.type is pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
+        show_splash = False
 
 
   while keep_running:
     timer.tick(fps)
     screen.fill(black)
-
-    # Show splash screen
-    if show_splash:
-      splash.draw()
-      screen.blit(splash.surface, (0, 0))
-      splash.new_generation()
-      splash.iterate()
-      pygame.display.flip()
-
-      for e in pygame.event.get():
-        if e.type is pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
-          show_splash = False
-
-      ticks = 0
-      continue
 
     for e in pygame.event.get():
       if e.type is pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
