@@ -1,10 +1,11 @@
 from pyo import *
 from consts import *
+import time 
 
 class Sound:
   def __init__(self, freqs, vol):
     self.env = CosTable([(0,0),(50,1),(500,.25),(8191,0)])
-    self.wav = SawTable(12)
+    self.wav = SquareTable(12)
 
     self.freqs = []
     for f in freqs:

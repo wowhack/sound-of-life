@@ -1,6 +1,6 @@
 #!/usr/bin/env
 
-import pygame, random
+import sys, os, pygame, random
 from pygame.locals import *
 
 from cell import Cell
@@ -8,13 +8,11 @@ from consts import *
 from sound import Sound
 
 class Game:
-  def __init__(self, scale, vol, colors, play_sound):
+  def __init__(self, scale, vol, colors):
     self.colors = colors
-    self.play_sound = play_sound
     self.__init_randomized_cells()
     self.surface = pygame.Surface(screen_size)
-    if play_sound:
-      self.sound = Sound(scale, vol)
+    self.sound = Sound(scale, vol)
 
   def __init_randomized_cells(self):
     self.cells = []
@@ -24,12 +22,12 @@ class Game:
       self.cells.append(row)
 
       for x in range(game_width):
-        row.append(Cell(x, y, self.colors, random.choice([True, False])))
+        row.append(Cell(x, y, self.colors, random.choice([True, False, False, False])))
 
       self.cellsT = [list(i) for i in zip(*self.cells)]
 
   def playSound(self, ticks):
-    if self.play_sound:
+    if len != 0:
       self.sound.play(len(filter(lambda c: c.alive, self.cellsT[ticks])))
 
   def change_column_color(self, ticks):
