@@ -1,5 +1,6 @@
 from game import Game
 from consts import *
+from banana import Banana
 
 from pyo import Server
 import pygame, random
@@ -13,8 +14,9 @@ def main():
 
   games = []
   scales = [
-      ([0, 311.13, 349.23, 392.0, 415.30, 466.16, 523.25, 587.33], 0.2)
-      , ([0, 77.78, 87.31, 98.00, 103.83, 116.54, 130.81], 1)
+      ([0, 311.13, 349.23, 392.0, 415.30, 466.16, 523.25, 587.33], 0.2), 
+      ([0, 77.78, 87.31, 98.00, 103.83, 116.54, 130.81], 1),
+      ([1244.51, 1396.91, 1567.98, 1661.22, 1864.66, 2093.00, 2349.32], 0.01),
       ]
 
   for scale,vol in scales:
@@ -33,6 +35,7 @@ def randomize_color_number():
 def main_loop(games):
   keep_running = True
   ticks = 0
+  banana = Banana()
 
   while keep_running:
     timer.tick(fps)
@@ -47,9 +50,11 @@ def main_loop(games):
       game.change_column_color(ticks)
       game.draw()
       screen.blit(game.surface, ((i%2)*game_screen_width,(i/2)*game_screen_height))
-      pygame.draw.line(screen, white, (0, game_screen_height), (2*game_screen_width, game_screen_height))
-      pygame.draw.line(screen, white, (game_screen_width, 0), (game_screen_width, 2*game_screen_height))
 
+    banana.draw(ticks)
+    screen.blit(banana.surface, (game_screen_width, game_screen_height))
+    pygame.draw.line(screen, white, (0, game_screen_height), (2*game_screen_width, game_screen_height))
+    pygame.draw.line(screen, white, (game_screen_width, 0), (game_screen_width, 2*game_screen_height))
     pygame.display.flip()
 
     ticks += 1
