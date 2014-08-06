@@ -25,7 +25,7 @@ def main():
   for scale,vol in scales:
     games.append(Game(scale, vol, randomize_colors()))
   
-  games.append(Game(chord_scale, chord_vol, randomize_colors(), CHORDS)) 
+  games.append(Game(chord_scale, chord_vol, randomize_colors())) 
 
   main_loop(games)
 
